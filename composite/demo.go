@@ -30,8 +30,7 @@ func main() {
 	s := []string{"hello", "", "world", "", "李四"}
 	fmt.Println(nonempty2(s), len(nonempty2(s)))
 
-	var s1 []string
-	stack := gotest.NewStack(s1)
+	stack := gotest.NewStack()
 	stack.Push("zhangsan")
 	stack.Push("lisi")
 	stack.Print()

@@ -6,7 +6,8 @@ type Stack struct {
 	container []string
 }
 
-func NewStack(container []string) *Stack {
+func NewStack() *Stack {
+	var container []string
 	return &Stack{container: container}
 }
 

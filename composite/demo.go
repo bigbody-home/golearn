@@ -38,6 +38,13 @@ func main() {
 	val := stack.Pop()
 	fmt.Println(val)
 	stack.Print()
+	rmstr := []string{"1", "2", "3"}
+	r := remove(rmstr, 1)
+	fmt.Println(r)
+	iarr := []int{1, 2, 3, 4, 5}
+	rarr := reverse(iarr)
+	fmt.Println(rarr)
+
 }
 func nonempty(str []string) []string {
 	i := 0
@@ -58,4 +65,24 @@ func nonempty2(str []string) []string {
 		}
 	}
 	return res
+}
+
+func remove(str []string, i int) []string {
+	copy(str[i:], str[i+1:])
+	return str[:len(str)-1]
+
+}
+func reverse(s []int) []int {
+	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
+		s[i], s[j] = s[j], s[i]
+
+	}
+	return s
+
+}
+
+func reverse2(s *[7]int) []int {
+	s1 := s[:]
+	r := reverse(s1)
+	return r
 }

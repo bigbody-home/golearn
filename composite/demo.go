@@ -14,6 +14,11 @@ const (
 )
 
 func main() {
+	//MapTest()
+	testMiddleLoop()
+
+}
+func Mytest() {
 	var a = [3]int{1, 3, 4}
 	fmt.Println(a[0])
 	for _, v := range a {
@@ -84,4 +89,29 @@ func reverse2(s *[7]int) []int {
 	s1 := s[:]
 	r := reverse(s1)
 	return r
+}
+
+func MapTest() {
+	mp := make(map[string]int)
+	str := []string{"hello", "hello", "world", "world", "world", "nihao"}
+	for _, v := range str {
+		if v1, ok := mp[v]; ok {
+			v1++
+			mp[v] = v1
+		} else {
+			mp[v] = 1
+		}
+	}
+	num := count("nihao", mp)
+	fmt.Println(num)
+
+}
+func count(str string, mp map[string]int) int {
+	num := mp[str]
+
+	return num
+}
+
+func testMiddleLoop() {
+	gotest.PrintTree()
 }

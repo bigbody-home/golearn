@@ -3,6 +3,10 @@ package main
 import (
 	"fmt"
 	"golearn/gotest"
+	"log"
+	"net"
+	"net/rpc"
+	"net/rpc/jsonrpc"
 )
 
 type Level int
@@ -15,7 +19,8 @@ const (
 
 func main() {
 	//MapTest()
-	testMiddleLoop()
+	//testMiddleLoop()
+	RpcTest()
 
 }
 func Mytest() {
@@ -90,7 +95,22 @@ func reverse2(s *[7]int) []int {
 	r := reverse(s1)
 	return r
 }
+func RpcTest() {
+	conn, err := net.Dial("tcp", "localhost:1234")
+	if err != nil {
+		log.Fatal("net.Dial:", err)
+	}
 
+	client := rpc.NewClientWithCodec(jsonrpc.NewClientCodec(conn))
+
+	var reply string
+	err = client.Call("HelloService.Hello2", "luke", &reply)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(reply)
+}
 func MapTest() {
 	mp := make(map[string]int)
 	str := []string{"hello", "hello", "world", "world", "world", "nihao"}
@@ -114,4 +134,5 @@ func count(str string, mp map[string]int) int {
 
 func testMiddleLoop() {
 	gotest.PrintTree()
+
 }

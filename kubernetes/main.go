@@ -29,7 +29,7 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	pods, err := clientset.CoreV1().Pods("").List(context.TODO(), metav1.ListOptions{})
+	pods, err := clientset.CoreV1().Pods("redis").List(context.TODO(), metav1.ListOptions{})
 	if err != nil {
 		panic(err.Error())
 	}
@@ -38,5 +38,8 @@ func main() {
 	for _, v := range pods.Items {
 		fmt.Println(v.Name)
 	}
-
+	svc, err := clientset.CoreV1().Services("redis").List(context.TODO(), metav1.ListOptions{})
+	for _, v := range svc.Items {
+		fmt.Printf("redis的service是%v\n", v.Name)
+	}
 }

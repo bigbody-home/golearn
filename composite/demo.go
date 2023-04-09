@@ -20,7 +20,15 @@ const (
 func main() {
 	//MapTest()
 	//testMiddleLoop()
-	RpcTest()
+	//RpcTest()
+	fmt.Println("=========test append method=========")
+	s1 := []string{"aa", "vv", "cc"}
+	s2 := []string{"bb", "bv"}
+	s1 = append(s1, s2...)
+	fmt.Println(s1)
+	fmt.Println("==========test copy method===========")
+	copy(s1[:1], s2[:1])
+	fmt.Println(s1)
 
 }
 func Mytest() {

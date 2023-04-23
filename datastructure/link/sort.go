@@ -1,6 +1,6 @@
 package main
 
-type IntSlice []string
+type IntSlice []int
 
 func (i1 IntSlice) Len() int {
 	//TODO implement me

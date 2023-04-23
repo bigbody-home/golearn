@@ -115,6 +115,20 @@ func main() {
 	//s = sort.StringSlice{}
 	sort.Strings(s)
 	fmt.Println(s)
+	//var so1 []int
+	//so1 = append(so1, 23, 4, 5, 6)
+	//so := IntSlice(so1)
+	//sort.Sort(so)
+
+	sort1 := SortNum{31, 21, 2, 1, 7}
+	HeapSort(sort1)
+	//sort1.SelectSort()
+	//sort1.InsertSort()
+	//sort1.ShellSort()
+	//res := MergeSort(sort1)
+	//fmt.Println("归并排序", res)
+	//res1 := QuickSort(sort1)
+	//fmt.Println("快速排序", res1)
 	//link := NewLink()
 	//link.AddHeader(node1)
 	//link.AddTail(node2)

@@ -30,6 +30,10 @@ func main() {
 	copy(s1[:1], s2[:1])
 	fmt.Println(s1)
 
+	f := sum
+	fmt.Println(f(3, 6))
+	sint := []int{2, 3, 4, 5, 3, 2, 4, 6, 7, 7}
+	fmt.Println(myslice(sint...))
 }
 func Mytest() {
 	var a = [3]int{1, 3, 4}
@@ -143,4 +147,14 @@ func count(str string, mp map[string]int) int {
 func testMiddleLoop() {
 	gotest.PrintTree()
 
+}
+func sum(x, y int) int {
+	return x + y
+}
+func myslice(x ...int) int {
+	var sum int
+	for _, v := range x {
+		sum += v
+	}
+	return sum
 }

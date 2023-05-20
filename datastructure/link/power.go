@@ -7,9 +7,10 @@ import (
 type SortNum []int
 
 func (n SortNum) SelectSort() {
-	fmt.Println("enter")
+	fmt.Println("以第一个数为标准，默认最小，在后面的所有数找出最小的值，然后跟第一个数比较，如果比第一个小，交换位置，最小指针右移动，直到排序完成")
 	for i := 0; i < len(n); i++ {
-		min := i
+		min := i //最小数的指针，最开始是0
+		//比较后面的所有数，找到最小的那个值
 		for j := i + 1; j < len(n); j++ {
 			if n[j] < n[min] {
 				n[min], n[j] = n[j], n[min]
@@ -21,11 +22,20 @@ func (n SortNum) SelectSort() {
 
 }
 func (n SortNum) InsertSort() {
+	fmt.Println("以第一个值为默认排好序的值，从排好序的那个值开始排序后一位数，找到前面排好序的合适位置插入")
 	for i := 1; i < len(n); i++ {
-		for j := i; j > 0; j-- {
+		//for j := i; j > 0; j-- {
+		//	if n[j] < n[j-1] {
+		//		n[j], n[j-1] = n[j-1], n[j]
+		//	}
+		//}
+		j := i
+		for j > 0 {
+			//fmt.Println(j)
 			if n[j] < n[j-1] {
 				n[j], n[j-1] = n[j-1], n[j]
 			}
+			j--
 		}
 
 	}

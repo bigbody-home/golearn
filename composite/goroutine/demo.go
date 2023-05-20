@@ -2,12 +2,66 @@ package main
 
 import (
 	"fmt"
+	"io/fs"
+	"io/ioutil"
+	"sync"
 	"time"
 )
 
+type S struct {
+	Name string
+	Size int64
+}
+
+func NewS() *S {
+	return &S{}
+}
+func WorkDir(dir fs.FileInfo, c chan S, basepath string, wg *sync.WaitGroup) chan S {
+	defer wg.Done()
+	if dir.IsDir() {
+
+		//WorkDir(dir, c)
+		basepath = basepath + "/" + dir.Name()
+		res, err := ioutil.ReadDir(basepath)
+		if err != nil {
+			panic(err)
+		}
+		for _, r := range res {
+			wg.Add(1)
+			go WorkDir(r, c, basepath, wg)
+		}
+	} else {
+		tmp := NewS()
+		tmp.Name = dir.Name()
+		tmp.Size = dir.Size()
+		c <- *tmp
+	}
+
+	return c
+
+}
 func main() {
-	files := []string{"ss.txt", "sdf.py", "计划报表.txt"}
-	DoFiles(files)
+	basePath := "/Users/lukezhang/GolandProjects/"
+	ch := make(chan S)
+	res, err := ioutil.ReadDir(basePath)
+	if err != nil {
+		panic(err)
+	}
+	var wg sync.WaitGroup
+	for _, r := range res {
+		wg.Add(1)
+		go WorkDir(r, ch, basePath, &wg)
+	}
+	go func() {
+		wg.Wait()
+		close(ch)
+	}()
+
+	for c := range ch {
+		fmt.Println(c)
+	}
+	//files := []string{"ss.txt", "sdf.py", "计划报表.txt"}
+	//DoFiles(files)
 	//natural := make(chan int)
 	//sq := make(chan int)
 	//go func() {

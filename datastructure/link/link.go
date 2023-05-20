@@ -120,15 +120,15 @@ func main() {
 	//so := IntSlice(so1)
 	//sort.Sort(so)
 
-	sort1 := SortNum{31, 21, 2, 1, 7}
-	HeapSort(sort1)
+	sort1 := SortNum{31, 21, 2, 1, 7, 34, 56, 33, 22, 11, 44, 532, 2323, 43, 45, 77, 67, 88, 99, 667}
+	//HeapSort(sort1)
 	//sort1.SelectSort()
 	//sort1.InsertSort()
 	//sort1.ShellSort()
 	//res := MergeSort(sort1)
 	//fmt.Println("归并排序", res)
-	//res1 := QuickSort(sort1)
-	//fmt.Println("快速排序", res1)
+	res1 := QuickSort(sort1)
+	fmt.Println("快速排序", res1)
 	//link := NewLink()
 	//link.AddHeader(node1)
 	//link.AddTail(node2)

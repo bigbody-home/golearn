@@ -6,16 +6,16 @@ import (
 )
 
 func TestStack_Pop(t *testing.T) {
-	container := []string{"hello", "world"}
-	stack := NewStack(container)
+
+	stack := NewStack()
 	val := stack.Pop()
 	if val != "world" {
 		t.Errorf("test failed")
 	}
 }
 func TestStack_Push(t *testing.T) {
-	container := []string{"hello", "world"}
-	stack := NewStack(container)
+
+	stack := NewStack()
 	stack.Push("ok")
 	val := stack.Pop()
 	if val != "ok" {
@@ -23,8 +23,8 @@ func TestStack_Push(t *testing.T) {
 	}
 }
 func TestStack_Count(t *testing.T) {
-	container := []string{"hello", "world"}
-	stack := NewStack(container)
+
+	stack := NewStack()
 	stack.Push("ok")
 	stack.Pop()
 	fmt.Println(len(stack.container))
@@ -33,8 +33,8 @@ func TestStack_Count(t *testing.T) {
 	}
 }
 func TestStack_GetVal(t *testing.T) {
-	container := []string{"hello", "world"}
-	stack := NewStack(container)
+
+	stack := NewStack()
 	stack.Push("ok")
 	val := stack.container[1]
 	if val != "world" {

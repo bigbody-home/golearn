@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	goflow "github.com/kamildrazkiewicz/go-flow"
 )
 
@@ -19,5 +20,6 @@ func main() {
 		return 3, nil
 	}
 	f := goflow.New().Add("first", nil, f1).Add("second", []string{"first"}, f2).Add("third", []string{"second"}, f3)
+
 	f.Do()
 }

@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+	"log"
+)
 
 type GraphInterface interface {
 	CreateGraph(v uint)
@@ -28,7 +32,41 @@ func (g *Graph) E() uint {
 	return g.e
 }
 
+func (g *Graph) Bfs(s uint) {
+	log.Println("Use Bfs start")
+	g.visit = make([]bool, g.V())
+	g.bfs(s)
+}
+
+func (g *Graph) bfs(s uint) {
+	q := list.New()
+	q.PushBack(s)
+	for {
+		//fmt.Print(q.Len())
+		if q.Len() > 0 {
+			first := q.Front()
+			g.visit1(first.Value.(uint))
+			q.Remove(first)
+
+			adj := g.Adj(first.Value.(uint))
+			cur := adj.first
+			for cur != nil {
+				if !g.visit[cur.val] {
+					q.PushBack(cur.val)
+				}
+
+				cur = cur.next
+
+			}
+		} else {
+			break
+		}
+
+	}
+}
+
 func (g *Graph) Dfs(s uint) {
+	log.Println("Use Dfs Start")
 	g.visit = make([]bool, g.V())
 	g.dfs(s)
 }
@@ -49,7 +87,7 @@ func (g *Graph) dfs(s uint) {
 func (g *Graph) visit1(s uint) {
 	if !g.visit[s] {
 		g.visit[s] = true
-		fmt.Println("visit", s)
+		fmt.Print("-->", s, "-->")
 	}
 
 }

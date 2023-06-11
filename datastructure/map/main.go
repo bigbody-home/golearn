@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	g := NewGraph(6).CreateGraph(6)
 
@@ -13,5 +15,7 @@ func main() {
 	g.AddEdge(3, 4)
 	//g.Adj(2).PrintNode()
 	g.Dfs(0)
+	fmt.Println()
+	g.Bfs(0)
 
 }

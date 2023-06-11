@@ -35,6 +35,19 @@ func main() {
 	resarr := make([]int, 0)
 	fmt.Println(inorderTraversal(bn1, resarr))
 
+	n11 := &Node{1, nil}
+	n22 := &Node{2, nil}
+	n33 := &Node{2, nil}
+	n99 := &Node{9, nil}
+	n11.next = n22
+	n22.next = n33
+	n33.next = n99
+	r := deleteDuplicates(n11)
+	for r != nil {
+		fmt.Print(r.val)
+		r = r.next
+	}
+
 }
 
 func Sum(arr []int, target int) []int {

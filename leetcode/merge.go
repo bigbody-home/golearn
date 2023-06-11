@@ -9,6 +9,32 @@ func (n *Node) Add(s *Node) {
 	n.next = s
 }
 
+//给定一个已排序的链表的头 head ， 删除所有重复的元素，使每个元素只出现一次 。返回 已排序的链表 。
+
+func deleteDuplicates(head *Node) *Node {
+	res := head
+	if head == nil {
+		return res
+	}
+	index := head.next
+	for index != nil {
+
+		if head.val == index.val {
+
+			index = index.next
+			if index == nil {
+				head.next = nil
+			}
+		} else {
+			head.next = index
+			head = head.next
+			index = index.next
+		}
+	}
+
+	return res
+}
+
 func MergeTwoLink(first *Node, second *Node) *Node {
 	res := &Node{}
 	prev := res

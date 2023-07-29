@@ -9,7 +9,9 @@ import (
 	appsV1 "k8s.io/api/apps/v1"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/util/homedir"
 )
@@ -111,5 +113,12 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("deployment %v create successfully\n", deploy.Name)
+	factory := informers.NewSharedInformerFactory(clientset, 0)
+	podinformer := factory.Core().V1().Pods()
+	podinformer.Informer().AddEventHandler(&cache.ResourceEventHandlerFuncs{
+		AddFunc:    func(obj interface{}) {},
+		UpdateFunc: func(oldObj, newObj interface{}) {},
+		DeleteFunc: func(obj interface{}) {},
+	})
 
 }

@@ -1,20 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
-	"net"
-	"os"
 )
 
 func main() {
-	con, err := net.Dial("tcp", "localhost:8080")
-	if err != nil {
-		panic(err)
-	}
-	defer con.Close()
-	MustCopy(os.Stdout, con)
-
+	mp := make(map[string]int, 10)
+	mp["zhangsan"] = 9
+	fmt.Println(mp["lisi"])
+	delete(mp, "ki")
+	fmt.Println(mp)
 }
 
 func MustCopy(dst io.Writer, src io.Reader) {

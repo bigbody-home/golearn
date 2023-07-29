@@ -49,6 +49,7 @@ func CreateEcs() {
 
 	case <-res:
 		fmt.Println("create ecs done!")
+		close(res)
 		return
 	case <-t.C:
 		fmt.Println("create ecs timeout..")

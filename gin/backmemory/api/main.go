@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
+	_ "golearn/gin/backmemory/api/docs"
+	_interface "golearn/gin/backmemory/interface"
+	"golearn/gin/backmemory/model"
+	"golearn/gin/backmemory/service"
+
 	"github.com/gin-gonic/gin"
 	_ "github.com/swaggo/files"
 	swaggerFiles "github.com/swaggo/files"
 	_ "github.com/swaggo/gin-swagger"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	_ "golearn/gin/backmemory/api/docs"
-	_interface "golearn/gin/backmemory/interface"
-	"golearn/gin/backmemory/model"
-	"golearn/gin/backmemory/service"
 )
 
 // 添加注释以描述 server 信息
@@ -42,6 +43,7 @@ func main() {
 	g.Any("/:resource", Handler)
 	g.Any("/:resource/:id", Handler2)
 	g.GET("swagger/*any", swaggerHandler)
+	g.Group("/user", Handler)
 	g.Run()
 }
 

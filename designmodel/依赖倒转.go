@@ -55,7 +55,7 @@ func main() {
 	for i := 0; i < 10; i++ {
 
 		go func() {
-			t := p.Get().(*Alicloud)
+			t := p.Get().(*Alicloud)			
 			t.Delete()
 			p.Put(t)
 		}()

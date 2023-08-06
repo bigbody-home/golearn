@@ -5,7 +5,7 @@ type ResCommonHandler struct {
 	Message any
 }
 
-func (r ResCommonHandler) HandRes() any {
+func (r *ResCommonHandler) HandRes() any {
 
 	return NewDSWHandler(r.Code, r.Message)
 }

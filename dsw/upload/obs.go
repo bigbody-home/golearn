@@ -8,7 +8,7 @@ import (
 )
 
 type Uploader interface {
-	Upload() error
+	Upload() common.Handler
 }
 
 type OssUploader struct {
@@ -19,18 +19,16 @@ type OssUploader struct {
 	ProductType string
 }
 
-func NewOssUploader(createBy string, bucket string, filePath string, productType string) *OssUploader {
-	return &OssUploader{CreateBy: createBy, Bucket: bucket, FilePath: filePath, ProductType: productType}
+func NewOssUploader(createBy string, bucket string, filePath string) *OssUploader {
+	return &OssUploader{CreateBy: createBy, Bucket: bucket, FilePath: filePath, ProductType: "OSS"}
 }
 
-func (o *OssUploader) Upload() error {
+func (o *OssUploader) Upload() common.Handler {
 
-	fmt.Printf("%v upload one file to oss, ossfile info: %v,%v\n", o.CreateBy, o.FilePath, o.Bucket)
-	println("step1->upload to oss")
-	println("step2->record res to database")
-	println("step3->return res to user")
-	res := common.NewDSWError(200, "Success")
-
+	fmt.Printf("%v upload file %v to %v OSS bucket", o.CreateBy, o.Bucket, o.FilePath)
+	fmt.Println("step1 upload to oss")
+	fmt.Println("step2 record db if success")
+	fmt.Println("commit res")
+	res := common.NewDSWHandler(200, "success")
 	return res
-
 }

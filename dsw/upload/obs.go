@@ -8,6 +8,7 @@ import (
 
 type Uploader interface {
 	Upload() common.Handler
+	GetRes() common.Handler
 }
 
 type OssUploader struct {
@@ -29,5 +30,17 @@ func (o *OssUploader) Upload() common.Handler {
 	fmt.Println("step2 record db if success")
 	fmt.Println("commit res")
 	res := common.NewDSWHandler(200, "success")
+	return res
+}
+
+func (o *OssUploader) GetRes() common.Handler {
+
+	fmt.Println("get res done")
+	s := &struct {
+		Name    string
+		Age     int
+		Address string
+	}{Name: "zhangsan", Age: 12, Address: "Beijing"}
+	res := common.NewResWithData(1, 10, 200, s, 5)
 	return res
 }

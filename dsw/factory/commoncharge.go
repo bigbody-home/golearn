@@ -6,6 +6,6 @@ import (
 )
 
 func CommonCharge(o upload.Uploader) common.Handler {
-	res := o.Upload()
+	res := o.GetRes()
 	return res
 }
